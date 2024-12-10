@@ -3,6 +3,8 @@ import { useEffect, useState, useCallback } from "react";
 import { PDFDocument } from "pdf-lib";
 import JSZip from "jszip";
 import { saveAs } from "file-saver";
+import dancingGIf from './assets/dancing-happy-dance.gif';
+
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -52,6 +54,7 @@ function App() {
       setError("An error occurred while processing the PDF.");
     } finally {
       setLoading(false);
+      setFile(null);
     }
   };
 
@@ -110,6 +113,16 @@ function App() {
             )}
           </button>
         </div>
+
+        { loading && (
+          <div className="flex items-center justify-center">
+            <div className="text-center">
+              <h1 className="text-xl font-semibold text-gray-700 mt-2 mb-2">მუშავდება...</h1>
+              <h2 className="text-xl font-semibold text-gray-700 mt-2 mb-2">დნცკ დნცკ დნცკ</h2>
+              <img className="rounded" src={dancingGIf} alt="Processing..." />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   )
